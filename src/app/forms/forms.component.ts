@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { Overlay } from 'ngx-modialog';
 import { Modal } from 'ngx-modialog/plugins/bootstrap';
 import { DatabaseService } from "../services/database.service";
@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
   providers:[DatabaseService]
 })
 export class FormsComponent implements OnInit {
-
+  id: string;
   public new_lastName;
   public new_firstName;
   public new_email;
@@ -20,7 +20,6 @@ export class FormsComponent implements OnInit {
   public new_options;
 
   constructor(private database: DatabaseService, private router: Router) { }
-
   ngOnInit() {
   }
 
@@ -34,6 +33,8 @@ export class FormsComponent implements OnInit {
 
     this.database.createPerson(lastname, firstname, Email, Comments, Option).subscribe(
       data => {
+        this.id = data['id']
+        this.router.navigate(['/confirm', this.id]);
         return true;
       },
       error => {
@@ -42,9 +43,4 @@ export class FormsComponent implements OnInit {
       }
     );
   }
-
-  pageRedirect() {
-      this.router.navigate(['/home']);
-  }
-
 }

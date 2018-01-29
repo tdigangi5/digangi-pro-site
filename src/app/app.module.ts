@@ -8,6 +8,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
 import { DatabaseComponent } from './database/database.component';
 import { FormsComponent } from './forms/forms.component';
+import {ConfirmComponent} from "./confirm/confirm.component";
 import { routing } from "./app.routing";
 
 
@@ -17,7 +18,8 @@ import { routing } from "./app.routing";
     NavbarComponent,
     HomeComponent,
     DatabaseComponent,
-    FormsComponent
+    FormsComponent,
+    ConfirmComponent
   ],
   imports: [
     BrowserModule,

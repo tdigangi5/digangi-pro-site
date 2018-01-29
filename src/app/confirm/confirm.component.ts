@@ -1,15 +1,26 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { DatabaseService } from "../services/database.service";
+
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-confirm',
+  templateUrl: './confirm.component.html',
+  styleUrls: ['./confirm.component.css'],
+  providers:[DatabaseService]
 })
-export class HomeComponent implements OnInit {
+export class ConfirmComponent implements OnInit {
 
-  constructor() { }
+  id: string;
+  name: any;
+  private sub: any;
+
+  constructor(private route: ActivatedRoute, private database: DatabaseService) { }
 
   ngOnInit() {
+    this.sub = this.route.params.subscribe(params => {
+    this.id = params['id'];
+  });
+    this.database.getInfo(this.id).subscribe(data => this.name = data);
   }
-
 }
