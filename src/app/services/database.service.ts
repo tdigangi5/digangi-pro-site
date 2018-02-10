@@ -12,16 +12,18 @@ import 'rxjs/add/operator/do';
    constructor(private http: Http) { }
 
    createPerson(lastName, firstName, email, comments, option) {
-     let headers = new Headers({'Content-Type' : 'application/json'});
+     let headers = new Headers({
+         'Content-Type' : 'application/json',
+        });
      let options = new RequestOptions({ headers: headers});
      let INFO =  Object.assign(lastName, firstName, email, comments, option);
      let body = JSON.stringify(INFO);
+     console.log(options)
      return this.http.post(this.API_URL, body, options).map((res: Response) => res.json());
    }
 
    getInfo(id: string){
-     return this.http.get(this.API_URL + id)
-       .map((res:Response) => res.json());
+     return this.http.get(this.API_URL + id).map((res:Response) => res.json());
    }
 
 }
