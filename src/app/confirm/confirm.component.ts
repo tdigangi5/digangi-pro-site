@@ -12,7 +12,7 @@ import { DatabaseService } from "../services/database.service";
 export class ConfirmComponent implements OnInit {
 
   id: string;
-  name: any;
+  name: string;
   private sub: any;
 
   constructor(private route: ActivatedRoute, private database: DatabaseService) { }
